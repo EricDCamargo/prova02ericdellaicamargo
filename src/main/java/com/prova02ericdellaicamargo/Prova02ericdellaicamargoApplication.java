@@ -1,4 +1,4 @@
-package com.prova02ericdellaicamargo.prova02ericdellaicamargo;
+package com.prova02ericdellaicamargo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
