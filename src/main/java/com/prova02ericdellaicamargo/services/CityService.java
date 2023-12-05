@@ -26,4 +26,8 @@ public class CityService {
         .orElseThrow(() -> new EntityNotFoundException("Cidade não encontrada"));
   }
 
+  public City save(City city) {
+    return cityRepository.save(city);
+  }
+
 }

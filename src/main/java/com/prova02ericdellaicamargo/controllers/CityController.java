@@ -28,4 +28,10 @@ public class CityController {
     return new ResponseEntity<>(city, HttpStatus.OK);
   }
 
+  @PostMapping
+  public ResponseEntity<City> createCity(@RequestBody City city) {
+    City createdCity = cityService.save(city);
+    return new ResponseEntity<>(createdCity, HttpStatus.CREATED);
+  }
+
 }
