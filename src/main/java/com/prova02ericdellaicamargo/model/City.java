@@ -21,4 +21,14 @@ public class City {
 
   @NotEmpty(message = "O estado não pode estar vazio")
   private String province;
+
+  @NotEmpty(message = "O nome não pode estar vazio")
+  private String country;
+
+  @NotEmpty(message = "O estado não pode estar vazio")
+  private String population;
+
+  @NotEmpty(message = "O nome não pode estar vazio")
+  private String age;
+
 }

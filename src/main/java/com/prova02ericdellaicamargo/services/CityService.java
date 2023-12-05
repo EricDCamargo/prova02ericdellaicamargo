@@ -39,6 +39,15 @@ public class CityService {
     if (city.getProvince() == null || city.getProvince().isEmpty()) {
       throw new IllegalArgumentException("O campo 'estado' é obrigatório.");
     }
+    if (city.getCountry() == null || city.getCountry().isEmpty()) {
+      throw new IllegalArgumentException("O campo 'país' é obrigatório.");
+    }
+    if (city.getPopulation() == null || city.getPopulation().isEmpty()) {
+      throw new IllegalArgumentException("O campo 'população' é obrigatório.");
+    }
+    if (city.getAge() == null || city.getAge().isEmpty()) {
+      throw new IllegalArgumentException("O campo 'idade' é obrigatório.");
+    }
   }
 
 }
