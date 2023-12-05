@@ -27,7 +27,18 @@ public class CityService {
   }
 
   public City save(City city) {
+    validateCity(city);
     return cityRepository.save(city);
+  }
+
+  private void validateCity(City city) {
+    if (city.getName() == null || city.getName().isEmpty()) {
+      throw new IllegalArgumentException("O campo 'nome' é obrigatório.");
+    }
+
+    if (city.getProvince() == null || city.getProvince().isEmpty()) {
+      throw new IllegalArgumentException("O campo 'estado' é obrigatório.");
+    }
   }
 
 }

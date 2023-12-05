@@ -2,12 +2,17 @@ package com.prova02ericdellaicamargo.controllers;
 
 import com.prova02ericdellaicamargo.model.City;
 import com.prova02ericdellaicamargo.services.CityService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cities")
@@ -29,9 +34,20 @@ public class CityController {
   }
 
   @PostMapping
-  public ResponseEntity<City> createCity(@RequestBody City city) {
-    City createdCity = cityService.save(city);
-    return new ResponseEntity<>(createdCity, HttpStatus.CREATED);
+  public ResponseEntity<?> createCity(@Valid @RequestBody City city, BindingResult result) {
+    if (result.hasErrors()) {
+      List<String> errors = result.getFieldErrors().stream()
+          .map(err -> err.getDefaultMessage())
+          .collect(Collectors.toList());
+      return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    try {
+      City createdCity = cityService.save(city);
+      return new ResponseEntity<>(createdCity, HttpStatus.CREATED);
+    } catch (IllegalArgumentException e) {
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
   }
 
 }
